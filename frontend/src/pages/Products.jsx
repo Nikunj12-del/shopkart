@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import ProductCard from "../components/ProductCard";
-import SearchBar from "../components/SearchBar";
-import api from "../services/api";
+import Navbar from "../../../client/shopkart-frontend/src/components/Navbar";
+import ProductCard from "../../../client/shopkart-frontend/src/components/ProductCard";
+import SearchBar from "../../../client/shopkart-frontend/src/components/SearchBar";
+import api from "../../../client/shopkart-frontend/src/services/api";
 
 const Products = () => {
     const [products, setProducts] = useState([]);

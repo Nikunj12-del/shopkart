@@ -1,21 +1,53 @@
-import { useEffect, useState } from "react";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8085";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Navigate
+} from "react-router-dom";
 
-export default function App() {
-  const [status, setStatus] = useState("Checking backend...");
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import Products from "./pages/Products";
+import ProductDetails from "./pages/ProductDetails";
+import Wishlist from "./pages/Wishlist";
+import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import Payment from "./pages/Payment";
+import OrderSuccess from "./pages/OrderSuccess";
+import Orders from "./pages/Orders";
+import OrderDetails from "./pages/OrderDetails";
 
-  useEffect(() => {
-    fetch(`${API_URL}/health`)
-      .then((res) => res.json())
-      .then((data) => setStatus(data.message || "Backend connected"))
-      .catch(() => setStatus("Backend unavailable"));
-  }, []);
+function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Navigate to="/login" replace />} />
 
-  return (
-    <main style={{ fontFamily: "sans-serif", padding: "3rem", background: "#020817", color: "#e2e8f0", minHeight: "100vh" }}>
-      <h1 style={{ fontSize: "2rem", marginBottom: "1rem" }}>ShopKart</h1>
-      <p>Status: {status}</p>
-    </main>
-  );
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/home" element={<Home />} />
+
+                <Route path="/products" element={<Products />} />
+                <Route path="/products/:id" element={<ProductDetails />} />
+
+                <Route path="/wishlist" element={<Wishlist />} />
+                <Route path="/cart" element={<Cart />} />
+
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/checkout/payment" element={<Payment />} />
+                <Route path="/checkout/payment/:id" element={<Payment />} />
+
+                <Route path="/order-success/:id" element={<OrderSuccess />} />
+
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/orders/:id" element={<OrderDetails />} />
+
+                <Route path="*" element={<Navigate to="/home" replace />} />
+            </Routes>
+        </BrowserRouter>
+    );
 }
+
+export default App;

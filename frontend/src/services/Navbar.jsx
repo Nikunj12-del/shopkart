@@ -1,8 +1,8 @@
 
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { useCart } from "../context/CartContext";
-import api from "../services/api";
+import { useCart } from "../../../client/shopkart-frontend/src/context/CartContext";
+import api from "./api";
 
 const Navbar = () => {
     const navigate = useNavigate();
