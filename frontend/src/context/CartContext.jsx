@@ -6,10 +6,12 @@ import {
 } from "react";
 
 import api from "../services/api";
+import { useAuth } from "./AuthContext";
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
+    const { status: authStatus } = useAuth();
 
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -50,10 +52,13 @@ export const CartProvider = ({ children }) => {
     // FETCH CART WHEN APP LOADS
 
     useEffect(() => {
-
-        fetchCart();
-
-    }, []);
+        if (authStatus === "authenticated") {
+            fetchCart();
+        } else {
+            setCart([]);
+            setError("");
+        }
+    }, [authStatus]);
 
 
     // ADD PRODUCT TO CART

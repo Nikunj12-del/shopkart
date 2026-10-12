@@ -23,12 +23,17 @@ const app = express();
 
 const PORT = process.env.PORT || 8085;
 const frontendOrigin = (process.env.FRONTEND_URL || "http://localhost:5173")
+    .trim()
     .replace(/\/+$/, "");
 const allowedOrigins = new Set([
-    frontendOrigin,
+    "https://shopkart-eight-nu.vercel.app",
     "http://localhost:5173",
     "http://127.0.0.1:5173"
 ]);
+
+if (frontendOrigin !== "*") {
+    allowedOrigins.add(frontendOrigin);
+}
 
 // MIDDLEWARE
 app.use(

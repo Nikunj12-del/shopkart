@@ -1,47 +1,10 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../services/api";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
+import { useAuth } from "../context/AuthContext";
 
 function Home() {
-  const navigate = useNavigate();
-
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
   const [showProfile, setShowProfile] = useState(false);
-
-  useEffect(() => {
-    const getUser = async () => {
-      try {
-        const response = await api.get("/customers/me");
-
-        setUser(response.data);
-      } catch (error) {
-        console.log(error);
-        navigate("/login");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    getUser();
-  }, [navigate]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
-        <div className="text-center">
-
-          <div className="w-12 h-12 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin mx-auto"></div>
-
-          <p className="text-white mt-4 font-medium">
-            Loading your dashboard...
-          </p>
-
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-slate-950 text-white">

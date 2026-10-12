@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
+import { useAuth } from "../context/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
+  const { refreshUser } = useAuth();
 
   const [form, setForm] = useState({
     email: "",
@@ -59,6 +61,14 @@ function Login() {
         email: form.email,
         password: form.password,
       });
+
+      const user = await refreshUser();
+      if (!user) {
+        setApiError(
+          "Login succeeded, but ShopKart could not verify your session. Please check your connection and try again."
+        );
+        return;
+      }
 
       navigate("/home");
     } catch (error) {

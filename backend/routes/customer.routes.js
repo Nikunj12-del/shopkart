@@ -37,7 +37,6 @@ router.get(
 // Logout
 router.post(
     "/logout",
-    protect,
     logoutCustomer
 );
 

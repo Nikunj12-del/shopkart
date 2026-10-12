@@ -2,14 +2,16 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../context/CartContext";
-import api from "../services/api";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { totalItems } = useCart();
+    const { logout: endSession } = useAuth();
 
     const [showLogoutModal, setShowLogoutModal] = useState(false);
+    const [logoutError, setLogoutError] = useState("");
     const [isRunning, setIsRunning] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -58,13 +60,17 @@ const Navbar = () => {
 
     const logout = async () => {
         try {
-            await api.post("/customers/logout", {});
+            await endSession();
 
             closeModal();
             setIsMobileMenuOpen(false);
             navigate("/login");
         } catch (error) {
             console.error("Logout failed:", error);
+            setLogoutError(
+                error.response?.data?.message ||
+                "Unable to log out. Please check your connection and try again."
+            );
         }
     };
 
@@ -78,6 +84,7 @@ const Navbar = () => {
     const closeModal = () => {
         setShowLogoutModal(false);
         setIsRunning(false);
+        setLogoutError("");
 
         if (timerRef.current) {
             clearTimeout(timerRef.current);
@@ -362,6 +369,12 @@ const Navbar = () => {
                         <p className="mt-2 text-sm text-slate-400">
                             Do you really want to logout from ShopKart?
                         </p>
+
+                        {logoutError && (
+                            <p role="alert" className="mt-4 text-sm text-red-300">
+                                {logoutError}
+                            </p>
+                        )}
 
                         <div className="mt-7 flex items-center justify-center gap-4">
 

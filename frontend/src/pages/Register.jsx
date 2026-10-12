@@ -77,12 +77,16 @@ function Register() {
 
       navigate("/login");
     } catch (error) {
-      console.log(error);
-
-      if (error.response?.data?.message) {
+      if (error.response?.status === 409) {
+        setApiError(
+          "An account with this email already exists. Please log in or use a different email."
+        );
+      } else if (error.response?.data?.message) {
         setApiError(error.response.data.message);
       } else {
-        setApiError("Registration failed");
+        setApiError(
+          "Unable to complete registration. Check your connection and try again."
+        );
       }
     } finally {
       setLoading(false);

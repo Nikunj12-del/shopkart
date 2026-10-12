@@ -2,6 +2,13 @@ const Customer = require("../models/customer.model");
 const bcrypt = require("bcrypt");
 const generateToken = require("../utils/generateToken");
 
+const authCookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    path: "/"
+};
+
 
 
 // REGISTER CUSTOMER
@@ -66,6 +73,13 @@ const registerCustomer = async (req, res) => {
 
         console.log(error);
 
+        if (error.code === 11000) {
+            return res.status(409).json({
+                success: false,
+                message: "Email already exists"
+            });
+        }
+
         return res.status(500).json({
             success: false,
             message: "Server error"
@@ -120,9 +134,7 @@ const loginCustomer = async (req, res) => {
 
 
         res.cookie("token", token, {
-            httpOnly: true,
-            secure: false,
-            sameSite: "lax",
+            ...authCookieOptions,
             maxAge: 24 * 60 * 60 * 1000
         });
 
@@ -173,11 +185,7 @@ const getMyProfile = async (req, res) => {
 const logoutCustomer = async (req, res) => {
     try {
 
-        res.clearCookie("token", {
-            httpOnly: true,
-            secure: false,
-            sameSite: "lax"
-        });
+        res.clearCookie("token", authCookieOptions);
 
         return res.status(200).json({
             success: true,
