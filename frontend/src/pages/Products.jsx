@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Navbar from "../services/Navbar";
+import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import SearchBar from "../components/SearchBar";
 import api from "../services/api";

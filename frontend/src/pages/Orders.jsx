@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
-import Navbar from "../services/Navbar";
+import Navbar from "../components/Navbar";
 
 function Orders() {
     const [orders, setOrders] = useState([]);

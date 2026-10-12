@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-import Navbar from "../services/Navbar";
+import Navbar from "../components/Navbar";
 
 function Home() {
   const navigate = useNavigate();

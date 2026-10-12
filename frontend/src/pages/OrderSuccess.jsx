@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Navbar from "../services/Navbar";
+import Navbar from "../components/Navbar";
 
 function OrderSuccess() {
     const { id } = useParams();

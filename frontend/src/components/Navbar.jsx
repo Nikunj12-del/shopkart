@@ -2,7 +2,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../context/CartContext";
-import api from "./api";
+import api from "../services/api";
 
 const Navbar = () => {
     const navigate = useNavigate();

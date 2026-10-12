@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
-import Navbar from "../services/Navbar";
+import Navbar from "../components/Navbar";
 
 function OrderDetails() {
     const { id } = useParams();

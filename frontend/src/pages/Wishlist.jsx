@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../services/Navbar";
+import Navbar from "../components/Navbar";
 import WishlistCard from "../components/WishlistCard";
 import api from "../services/api";
 
