@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Navbar from "../../../client/shopkart-frontend/src/components/Navbar";
+import Navbar from "../services/Navbar";
 
 function OrderSuccess() {
     const { id } = useParams();

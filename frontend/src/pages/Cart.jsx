@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Navbar from "../services/Navbar";
-import { useCart } from "../../../client/shopkart-frontend/src/context/CartContext";
+import { useCart } from "../context/CartContext";
 
 const Cart = () => {
     const navigate = useNavigate();

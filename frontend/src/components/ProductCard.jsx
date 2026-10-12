@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useCart } from "../../../client/shopkart-frontend/src/context/CartContext";
-import api from "../../../client/shopkart-frontend/src/services/api";
+import { useCart } from "../context/CartContext";
+import api from "../services/api";
 
 const ProductCard = ({ product }) => {
 

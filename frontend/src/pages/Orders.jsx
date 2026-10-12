@@ -1,8 +1,8 @@
 
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import api from "../../../client/shopkart-frontend/src/services/api";
-import Navbar from "../../../client/shopkart-frontend/src/components/Navbar";
+import api from "../services/api";
+import Navbar from "../services/Navbar";
 
 function Orders() {
     const [orders, setOrders] = useState([]);

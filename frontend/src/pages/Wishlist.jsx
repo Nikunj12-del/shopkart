@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../../client/shopkart-frontend/src/components/Navbar";
-import WishlistCard from "../../../client/shopkart-frontend/src/components/WishlistCard";
-import api from "../../../client/shopkart-frontend/src/services/api";
+import Navbar from "../services/Navbar";
+import WishlistCard from "../components/WishlistCard";
+import api from "../services/api";
 
 const Wishlist = () => {
 

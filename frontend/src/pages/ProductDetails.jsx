@@ -4,7 +4,7 @@ import {
     useParams,
     useLocation
 } from "react-router-dom";
-import api from "../../../client/shopkart-frontend/src/services/api";
+import api from "../services/api";
 
 const ProductDetails = () => {
 
